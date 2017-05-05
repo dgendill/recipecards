@@ -52,14 +52,19 @@ mprettyPrint q =
 mkRecipe :: Array Ingredient -> Recipe
 mkRecipe = RecipeNT <<< fromFoldable
 
+scale :: Number -> Recipe -> Recipe
+scale amount recipe = RecipeNT $ foldMap (\(Ingredient name quantity) -> do
+    singleton (Ingredient name (qMultiply (scalar amount) quantity))
+  ) recipe
+
 pluralize :: Number -> String -> String
 pluralize n s =
   if n == 0.0 || n > 1.0
     then s <> "s"
     else s
 
-rename :: String -> Ingredient -> Ingredient
-rename name (Ingredient _ q) = Ingredient name q
+rename :: Ingredient -> String -> Ingredient
+rename (Ingredient _ q) name = Ingredient name q
 
 eggs :: Number -> Ingredient
 eggs amount = Ingredient (pluralize amount "egg") (quantity amount largeEgg)

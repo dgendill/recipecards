@@ -7,10 +7,14 @@ import Control.Monad.Eff.Console (CONSOLE, log, logShow)
 
 test = do
   log $ formatRecipe brownies
+  log "--------------"
+  log "Halfed"
+  log "--------------\n"
+  log $ formatRecipe $ scale 0.5 brownies
 
 brownies :: Recipe
 brownies = mkRecipe
-  [ rename "Eggs" $ eggs' 4
+  [ eggs' 3 `rename` "Eggs"
   , cupsOf' "Sugar" 2
   , cupsOf' "Brown Sugar" 1
   , cupsOf "Cocoa" $ m34 + m2
