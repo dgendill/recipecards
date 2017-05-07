@@ -23,3 +23,6 @@ brownies = mkRecipe
   , cupsOf "Flour" m12
   , teaspoonsOf' "Vanilla Extract" 2
   ]
+
+biscuitMuffins :: Recipe
+biscuitMuffins = mkRecipe []

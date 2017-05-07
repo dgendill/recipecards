@@ -9,4 +9,4 @@ import Data.List (fromFoldable)
 
 main :: forall e. Eff (console :: CONSOLE | e) Unit
 main = do
-  log "running" --logShow make
+  log "running"

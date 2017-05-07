@@ -13,3 +13,6 @@ instance discardIng :: Discard Ingredient where
 
 instance showIng :: Show Ingredient where
   show (Ingredient name q) = (show q) <> " " <> name
+
+rename :: Ingredient -> String -> Ingredient
+rename (Ingredient _ q) name = Ingredient name q

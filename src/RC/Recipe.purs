@@ -48,7 +48,6 @@ mprettyPrint q =
   case prettyPrint' q of
     Tuple v u -> v <> " " <> u
 
-
 mkRecipe :: Array Ingredient -> Recipe
 mkRecipe = RecipeNT <<< fromFoldable
 
@@ -62,9 +61,6 @@ pluralize n s =
   if n == 0.0 || n > 1.0
     then s <> "s"
     else s
-
-rename :: Ingredient -> String -> Ingredient
-rename (Ingredient _ q) name = Ingredient name q
 
 eggs :: Number -> Ingredient
 eggs amount = Ingredient (pluralize amount "egg") (quantity amount largeEgg)
