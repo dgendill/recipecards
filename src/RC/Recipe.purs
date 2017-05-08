@@ -35,18 +35,12 @@ formatRecipe :: Recipe -> String
 formatRecipe recipe =
   foldMap (append "") $ runRecipe $ do
     (Ingredient name quantity) <- recipe
-    pure $ (padName name) <> " - " <>  (mprettyPrint quantity) <> "\n"
+    pure $ (padName name) <> " - " <>  (prettyPrint quantity) <> "\n"
   where
     maxstr = foldl (\maxlength (Ingredient name quantity) -> do
         P.max (length name) maxlength
       ) 0 recipe
     padName = format (width maxstr)
-
-
-mprettyPrint :: Quantity -> String
-mprettyPrint q =
-  case prettyPrint' q of
-    Tuple v u -> v <> " " <> u
 
 mkRecipe :: Array Ingredient -> Recipe
 mkRecipe = RecipeNT <<< fromFoldable
